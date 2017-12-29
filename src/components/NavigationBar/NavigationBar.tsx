@@ -1,7 +1,7 @@
 import * as React from 'react';
 import './NavigationBar.css';
 import { authenticationService } from '../../services/authenticationService';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 interface NavigationBarState {
     isAuthenticated: boolean;
@@ -32,26 +32,26 @@ class NavigationBar extends React.Component<{}, NavigationBarState> {
                 <button className="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
                     <span className="navbar-toggler-icon"/>
                 </button>
-                <a className="navbar-brand" href="/">Actions</a>
+                <NavLink className="navbar-brand" to={'/'}>Actions</NavLink>
 
                 <div className="collapse navbar-collapse" id="navbarsExampleDefault">
                     <ul className="navbar-nav mr-auto">
                         <li className="nav-item">
-                            <Link className="nav-link" to={'/'}>Home</Link>
+                            <NavLink className="nav-link" to={'/'}>Home</NavLink>
                         </li>
                         {!this.state.isAuthenticated &&
                         <li className="nav-item">
-                            <Link className="nav-link" to={'/login'}>Login</Link>
+                            <NavLink className="nav-link" to={'/login'}>Login</NavLink>
                         </li>
                         }
                         {this.state.isAuthenticated &&
                         <li className="nav-item">
-                            <Link className="nav-link" to={'/'} onClick={this.logout}>Logout</Link>
+                            <NavLink className="nav-link" to={'/'} onClick={this.logout}>Logout</NavLink>
                         </li>
                         }
                         {!this.state.isAuthenticated &&
                         <li className="nav-item">
-                            <Link className="nav-link" to={'/signup'}>Sign Up</Link>
+                            <NavLink className="nav-link" to={'/signup'}>Sign Up</NavLink>
                         </li>
                         }
                     </ul>
