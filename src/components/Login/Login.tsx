@@ -3,6 +3,9 @@ import './Login.css';
 import { Redirect } from 'react-router';
 import { authenticationService } from '../../services/authenticationService';
 import NavigationBar from '../NavigationBar/NavigationBar';
+import { TextField } from 'material-ui';
+import Button from 'material-ui/Button';
+import Grid from 'material-ui/Grid';
 
 interface LoginState {
     username?: string;
@@ -20,7 +23,6 @@ class Login extends React.Component<{}, LoginState> {
             redirect: false
         };
         this.login = this.login.bind(this);
-        this.onChange = this.onChange.bind(this);
     }
 
     login() {
@@ -39,7 +41,7 @@ class Login extends React.Component<{}, LoginState> {
         }
     }
 
-    onChange(event: React.FormEvent<HTMLInputElement>) {
+    onChange = (event: React.FormEvent<HTMLInputElement>) => {
         this.setState({
             [event.currentTarget.name]: event.currentTarget.value
         } as LoginState);
@@ -53,19 +55,29 @@ class Login extends React.Component<{}, LoginState> {
         return (
             <div>
                 <NavigationBar/>
-                <div className="container">
-                    <h1>Login Page</h1>
+                <Grid container alignItems="center" justify="center">
+                    <div>
+                        <h1>Login Page</h1>
 
-                    <div className="form-group">
-                        <label>Username</label>
-                        <input type="text" name="username" placeholder="username" className="form-control" onChange={this.onChange}/>
+                        <TextField
+                            name="username"
+                            placeholder="username"
+                            onChange={this.onChange}
+                            label="username"/>
+                        <br/>
+                        <TextField
+                            name="password"
+                            type="password"
+                            placeholder="password"
+                            onChange={this.onChange}
+                            label="password"/>
+                        <br/>
+
+                        <Button raised color="primary" onClick={this.login}>
+                            Submit
+                        </Button>
                     </div>
-                    <div className="form-group">
-                        <label>Password</label>
-                        <input type="password" name="password" placeholder="password" className="form-control" onChange={this.onChange}/>
-                    </div>
-                    <button type="submit" className="btn btn-default" onClick={this.login}>Submit</button>
-                </div>
+                </Grid>
             </div>
         );
     }

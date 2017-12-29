@@ -3,6 +3,9 @@ import './SignUp.css';
 import { authenticationService } from '../../services/authenticationService';
 import { Redirect } from 'react-router';
 import NavigationBar from '../NavigationBar/NavigationBar';
+import Grid from 'material-ui/Grid';
+import Button from 'material-ui/Button';
+import { TextField } from 'material-ui';
 
 interface SignUpProperties {
     title: string;
@@ -65,32 +68,48 @@ class SignUp extends React.Component<SignUpProperties, SignUpState> {
         return (
             <div>
                 <NavigationBar/>
-                <div className="container">
-                    <h1>Sign Up Page</h1>
 
-                    <div className="form-group">
-                        <label>Username</label>
-                        <input type="text" name="username" placeholder="username" className="form-control" onChange={this.onChange}/>
+                <Grid container alignItems="center" justify="center">
+                    <div>
+                        <h1>Sign Up Page</h1>
+
+                        <TextField
+                            name="username"
+                            placeholder="username"
+                            onChange={this.onChange}
+                            label="username"/>
+                        <br/>
+                        <TextField
+                            name="password"
+                            type="password"
+                            placeholder="password"
+                            onChange={this.onChange}
+                            label="password"/>
+                        <br/>
+                        <TextField
+                            name="email"
+                            placeholder="name@example.com"
+                            onChange={this.onChange}
+                            label="email"/>
+                        <br/>
+                        <TextField
+                            name="name"
+                            placeholder="firstName"
+                            onChange={this.onChange}
+                            label="firstName"/>
+                        <br/>
+                        <TextField
+                            name="surname"
+                            placeholder="lastName"
+                            onChange={this.onChange}
+                            label="lastName"/>
+                        <br/>
+
+                        <Button raised color="primary" onClick={this.register}>
+                            Submit
+                        </Button>
                     </div>
-                    <div className="form-group">
-                        <label>Password</label>
-                        <input type="password" name="password" placeholder="password" className="form-control" onChange={this.onChange}/>
-                    </div>
-                    <div className="form-group">
-                        <label>Email</label>
-                        <input type="email" name="email" placeholder="name@example.com" className="form-control" onChange={this.onChange}/>
-                        <small id="emailHelp" className="form-text text-muted">We'll never share your email with anyone else.</small>
-                    </div>
-                    <div className="form-group">
-                        <label>Name</label>
-                        <input type="text" name="firstName" placeholder="name" className="form-control" onChange={this.onChange}/>
-                    </div>
-                    <div className="form-group">
-                        <label>Surname</label>
-                        <input type="text" name="lastName" placeholder="surname" className="form-control" onChange={this.onChange}/>
-                    </div>
-                    <button type="submit" className="btn btn-default" onClick={this.register}>Submit</button>
-                </div>
+                </Grid>
             </div>
         );
     }
