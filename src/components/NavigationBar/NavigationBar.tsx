@@ -1,7 +1,7 @@
 import * as React from 'react';
-import './Header.css';
+import './NavigationBar.css';
 
-class Header extends React.Component<{}, {}> {
+class NavigationBar extends React.Component<{}, {}> {
 
     constructor(props: {}) {
         super(props);
@@ -50,4 +50,4 @@ class Header extends React.Component<{}, {}> {
     }
 }
 
-export default Header;
+export default NavigationBar;
