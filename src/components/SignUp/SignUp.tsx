@@ -58,7 +58,7 @@ class SignUp extends React.Component<SignUpProperties, SignUpState> {
             return (<Redirect to="/"/>);
         }
 
-        if (localStorage.getItem('token')) {
+        if (authenticationService.isAuthenticated()) {
             return (<Redirect to={'/'}/>);
         }
 

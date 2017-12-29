@@ -4,6 +4,7 @@ import { exampleDataService } from '../../services/exampleDataService';
 import ColorMessage from '../ColorMessage/ColorMessage';
 import BadPassword from '../BadPassword/BadPassword';
 import NavigationBar from '../NavigationBar/NavigationBar';
+import {authenticationService} from '../../services/authenticationService';
 
 interface WelcomeState {
     welcomeTitle: string;
@@ -55,7 +56,7 @@ class Welcome extends React.Component<{}, WelcomeState> {
                             )}
                         </div>
                     </div>
-                    {!localStorage.getItem('token') &&
+                    {!authenticationService.isAuthenticated() &&
                     <div className="starter-template">
                         <p className="lead">To see restricted content, please login or create account.</p>
                     </div>
