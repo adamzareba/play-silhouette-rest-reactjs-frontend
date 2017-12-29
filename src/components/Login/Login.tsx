@@ -2,6 +2,7 @@ import * as React from 'react';
 import './Login.css';
 import { Redirect } from 'react-router';
 import { authenticationService } from '../../services/authenticationService';
+import NavigationBar from '../NavigationBar/NavigationBar';
 
 interface LoginState {
     username?: string;
@@ -30,6 +31,7 @@ class Login extends React.Component<{}, LoginState> {
                     this.setState({
                         redirect: true
                     });
+                    this.context.push({pathname: '/'});
                 })
                 .catch((error) => {
                     console.error(error);
@@ -44,27 +46,26 @@ class Login extends React.Component<{}, LoginState> {
     }
 
     render() {
-        if (this.state.redirect) {
-            return (<Redirect to={'/'}/>);
-        }
-
-        if (localStorage.getItem('token')) {
+        if (this.state.redirect || authenticationService.isAuthenticated()) {
             return (<Redirect to={'/'}/>);
         }
 
         return (
-            <div className="container">
-                <h1>Login Page</h1>
+            <div>
+                <NavigationBar/>
+                <div className="container">
+                    <h1>Login Page</h1>
 
-                <div className="form-group">
-                    <label>Username</label>
-                    <input type="text" name="username" placeholder="username" className="form-control" onChange={this.onChange}/>
+                    <div className="form-group">
+                        <label>Username</label>
+                        <input type="text" name="username" placeholder="username" className="form-control" onChange={this.onChange}/>
+                    </div>
+                    <div className="form-group">
+                        <label>Password</label>
+                        <input type="password" name="password" placeholder="password" className="form-control" onChange={this.onChange}/>
+                    </div>
+                    <button type="submit" className="btn btn-default" onClick={this.login}>Submit</button>
                 </div>
-                <div className="form-group">
-                    <label>Password</label>
-                    <input type="password" name="password" placeholder="password" className="form-control" onChange={this.onChange}/>
-                </div>
-                <button type="submit" className="btn btn-default" onClick={this.login}>Submit</button>
             </div>
         );
     }

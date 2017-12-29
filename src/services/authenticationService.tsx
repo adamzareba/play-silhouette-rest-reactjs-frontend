@@ -20,4 +20,8 @@ export module authenticationService {
             'lastName': surname
         }).then(result => result.data);
     }
+
+    export function isAuthenticated(): boolean {
+        return (localStorage.getItem('token') !== null);
+    }
 }

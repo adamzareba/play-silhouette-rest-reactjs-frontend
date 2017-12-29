@@ -3,6 +3,7 @@ import './Home.css';
 import { exampleDataService } from '../../services/exampleDataService';
 import ColorMessage from '../ColorMessage/ColorMessage';
 import BadPassword from '../BadPassword/BadPassword';
+import NavigationBar from '../NavigationBar/NavigationBar';
 
 interface WelcomeState {
     welcomeTitle: string;
@@ -40,23 +41,26 @@ class Welcome extends React.Component<{}, WelcomeState> {
 
     render() {
         return (
-            <div className="container">
+            <div>
+                <NavigationBar/>
                 <div className="container">
-                    <div>
-                        <BadPassword value={this.state.badPassword}/>
+                    <div className="container">
+                        <div>
+                            <BadPassword value={this.state.badPassword}/>
+                        </div>
+                        <div>
+                            <h3>Did you know that fancy colors?</h3>
+                            {this.state.colors.map(color =>
+                                <ColorMessage name={color} key={color}/>
+                            )}
+                        </div>
                     </div>
-                    <div>
-                        <h3>Did you know that fancy colors?</h3>
-                        {this.state.colors.map(color =>
-                            <ColorMessage name={color} key={color}/>
-                        )}
+                    {!localStorage.getItem('token') &&
+                    <div className="starter-template">
+                        <p className="lead">To see restricted content, please login or create account.</p>
                     </div>
+                    }
                 </div>
-                {!localStorage.getItem('token') &&
-                <div className="starter-template">
-                    <p className="lead">To see restricted content, please login or create account.</p>
-                </div>
-                }
             </div>
         );
     }

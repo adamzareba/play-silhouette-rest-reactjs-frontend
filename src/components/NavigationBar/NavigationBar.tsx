@@ -1,10 +1,19 @@
 import * as React from 'react';
 import './NavigationBar.css';
+import { authenticationService } from '../../services/authenticationService';
+import { Link } from 'react-router-dom';
 
-class NavigationBar extends React.Component<{}, {}> {
+interface NavigationBarState {
+    isAuthenticated: boolean;
+}
+
+class NavigationBar extends React.Component<{}, NavigationBarState> {
 
     constructor(props: {}) {
         super(props);
+        this.state = {
+            isAuthenticated: authenticationService.isAuthenticated()
+        };
 
         this.logout = this.logout.bind(this);
     }
@@ -12,6 +21,9 @@ class NavigationBar extends React.Component<{}, {}> {
     logout() {
         localStorage.setItem('token', '');
         localStorage.clear();
+        this.setState({
+            isAuthenticated: false
+        });
     }
 
     render() {
@@ -25,20 +37,23 @@ class NavigationBar extends React.Component<{}, {}> {
                 <div className="collapse navbar-collapse" id="navbarsExampleDefault">
                     <ul className="navbar-nav mr-auto">
                         <li className="nav-item">
-                            <a className="nav-link" href="/">Home</a>
+                            <Link className="nav-link" to={'/'}>Home</Link>
                         </li>
+                        {!this.state.isAuthenticated &&
                         <li className="nav-item">
-                            <a className="nav-link" href="/login">Login</a>
+                            <Link className="nav-link" to={'/login'}>Login</Link>
                         </li>
+                        }
+                        {this.state.isAuthenticated &&
                         <li className="nav-item">
-                            <a className="nav-link" href="/" onClick={this.logout}>Logout</a>
+                            <Link className="nav-link" to={'/'} onClick={this.logout}>Logout</Link>
                         </li>
+                        }
+                        {!this.state.isAuthenticated &&
                         <li className="nav-item">
-                            <a className="nav-link" href="/signup">Sign Up</a>
+                            <Link className="nav-link" to={'/signup'}>Sign Up</Link>
                         </li>
-                        <li className="nav-item">
-                            <a className="nav-link disabled" href="#">Disabled</a>
-                        </li>
+                        }
                     </ul>
                     <form className="form-inline my-2 my-lg-0">
                         <input className="form-control mr-sm-2" type="text" placeholder="Search"/>

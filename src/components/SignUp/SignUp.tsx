@@ -2,6 +2,7 @@ import * as React from 'react';
 import './SignUp.css';
 import { authenticationService } from '../../services/authenticationService';
 import { Redirect } from 'react-router';
+import NavigationBar from '../NavigationBar/NavigationBar';
 
 interface SignUpProperties {
     title: string;
@@ -62,31 +63,34 @@ class SignUp extends React.Component<SignUpProperties, SignUpState> {
         }
 
         return (
-            <div className="container">
-                <h1>Sign Up Page</h1>
+            <div>
+                <NavigationBar/>
+                <div className="container">
+                    <h1>Sign Up Page</h1>
 
-                <div className="form-group">
-                    <label>Username</label>
-                    <input type="text" name="username" placeholder="username" className="form-control" onChange={this.onChange}/>
+                    <div className="form-group">
+                        <label>Username</label>
+                        <input type="text" name="username" placeholder="username" className="form-control" onChange={this.onChange}/>
+                    </div>
+                    <div className="form-group">
+                        <label>Password</label>
+                        <input type="password" name="password" placeholder="password" className="form-control" onChange={this.onChange}/>
+                    </div>
+                    <div className="form-group">
+                        <label>Email</label>
+                        <input type="email" name="email" placeholder="name@example.com" className="form-control" onChange={this.onChange}/>
+                        <small id="emailHelp" className="form-text text-muted">We'll never share your email with anyone else.</small>
+                    </div>
+                    <div className="form-group">
+                        <label>Name</label>
+                        <input type="text" name="firstName" placeholder="name" className="form-control" onChange={this.onChange}/>
+                    </div>
+                    <div className="form-group">
+                        <label>Surname</label>
+                        <input type="text" name="lastName" placeholder="surname" className="form-control" onChange={this.onChange}/>
+                    </div>
+                    <button type="submit" className="btn btn-default" onClick={this.register}>Submit</button>
                 </div>
-                <div className="form-group">
-                    <label>Password</label>
-                    <input type="password" name="password" placeholder="password" className="form-control" onChange={this.onChange}/>
-                </div>
-                <div className="form-group">
-                    <label>Email</label>
-                    <input type="email" name="email" placeholder="name@example.com" className="form-control" onChange={this.onChange}/>
-                    <small id="emailHelp" className="form-text text-muted">We'll never share your email with anyone else.</small>
-                </div>
-                <div className="form-group">
-                    <label>Name</label>
-                    <input type="text" name="firstName" placeholder="name" className="form-control" onChange={this.onChange}/>
-                </div>
-                <div className="form-group">
-                    <label>Surname</label>
-                    <input type="text" name="lastName" placeholder="surname" className="form-control" onChange={this.onChange}/>
-                </div>
-                <button type="submit" className="btn btn-default" onClick={this.register}>Submit</button>
             </div>
         );
     }
