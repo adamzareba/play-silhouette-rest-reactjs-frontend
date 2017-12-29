@@ -1,7 +1,7 @@
 import * as React from 'react';
 import './App.css';
 import Header from './components/Header/Header';
-import {Routes} from './routes';
+import { Routes } from './routes';
 
 // const logo = require('./images/logo.svg');
 

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import './SignUp.css';
-import {authenticationService} from '../../services/authenticationService';
-import {Redirect} from 'react-router';
+import { authenticationService } from '../../services/authenticationService';
+import { Redirect } from 'react-router';
 
 interface SignUpProperties {
     title: string;
@@ -34,7 +34,7 @@ class SignUp extends React.Component<SignUpProperties, SignUpState> {
 
     register() {
         authenticationService.register(this.state.username as string, this.state.password as string, this.state.email as string,
-            this.state.firstName as string, this.state.lastName as string)
+                                       this.state.firstName as string, this.state.lastName as string)
             .then(item => {
                 localStorage.setItem('token', item.token);
                 this.setState({

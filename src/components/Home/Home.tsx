@@ -1,6 +1,6 @@
 import * as React from 'react';
 import './Home.css';
-import {exampleDataService} from '../../services/exampleDataService';
+import { exampleDataService } from '../../services/exampleDataService';
 import ColorMessage from '../ColorMessage/ColorMessage';
 import BadPassword from '../BadPassword/BadPassword';
 

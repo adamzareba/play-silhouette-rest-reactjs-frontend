@@ -1,7 +1,7 @@
 import * as React from 'react';
 import './Login.css';
-import {Redirect} from 'react-router';
-import {authenticationService} from '../../services/authenticationService';
+import { Redirect } from 'react-router';
+import { authenticationService } from '../../services/authenticationService';
 
 interface LoginState {
     username?: string;
