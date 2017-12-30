@@ -4,7 +4,7 @@ import { exampleDataService } from '../../services/exampleDataService';
 import ColorMessage from '../ColorMessage/ColorMessage';
 import BadPassword from '../BadPassword/BadPassword';
 import NavigationBar from '../NavigationBar/NavigationBar';
-import { authenticationService } from '../../services/authenticationService';
+import {authenticationService} from '../../services/authenticationService';
 
 interface WelcomeState {
     welcomeTitle: string;

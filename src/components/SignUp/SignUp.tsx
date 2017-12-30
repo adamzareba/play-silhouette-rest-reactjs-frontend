@@ -9,7 +9,7 @@ import {
     RouteComponentProps,
     withRouter} from 'react-router';
 
-interface SignUpProperties extends RouteComponentProps<{}>{
+interface SignUpProperties extends RouteComponentProps<{}> {
     title: string;
 }
 
@@ -71,32 +71,42 @@ class SignUp extends React.Component<SignUpProperties, SignUpState> {
                             name="username"
                             placeholder="username"
                             onChange={this.onChange}
-                            label="username"/>
+                            label="username"
+                            value={this.state.username}
+                        />
                         <br/>
                         <TextField
                             name="password"
                             type="password"
                             placeholder="password"
                             onChange={this.onChange}
-                            label="password"/>
+                            label="password"
+                            value={this.state.password}
+                        />
                         <br/>
                         <TextField
                             name="email"
                             placeholder="name@example.com"
                             onChange={this.onChange}
-                            label="email"/>
+                            label="email"
+                            value={this.state.email}
+                        />
                         <br/>
                         <TextField
                             name="firstName"
                             placeholder="name"
                             onChange={this.onChange}
-                            label="firstName"/>
+                            label="firstName"
+                            value={this.state.firstName}
+                        />
                         <br/>
                         <TextField
                             name="lastName"
                             placeholder="surname"
                             onChange={this.onChange}
-                            label="lastName"/>
+                            label="lastName"
+                            value={this.state.lastName}
+                        />
                         <br/>
 
                         <Button raised color="primary" onClick={this.register}>
