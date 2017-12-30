@@ -1,13 +1,15 @@
 import * as React from 'react';
 import './SignUp.css';
 import { authenticationService } from '../../services/authenticationService';
-import { Redirect } from 'react-router';
 import NavigationBar from '../NavigationBar/NavigationBar';
 import Grid from 'material-ui/Grid';
 import Button from 'material-ui/Button';
 import { TextField } from 'material-ui';
+import {
+    RouteComponentProps,
+    withRouter} from 'react-router';
 
-interface SignUpProperties {
+interface SignUpProperties extends RouteComponentProps<{}>{
     title: string;
 }
 
@@ -17,7 +19,6 @@ interface SignUpState {
     email?: string;
     firstName?: string;
     lastName?: string;
-    redirect?: boolean;
 }
 
 class SignUp extends React.Component<SignUpProperties, SignUpState> {
@@ -29,11 +30,14 @@ class SignUp extends React.Component<SignUpProperties, SignUpState> {
             password: undefined,
             email: undefined,
             firstName: undefined,
-            lastName: undefined,
-            redirect: false
+            lastName: undefined
         };
         this.register = this.register.bind(this);
         this.onChange = this.onChange.bind(this);
+
+        if (authenticationService.isAuthenticated()) {
+            this.props.history.push('/');
+        }
     }
 
     register() {
@@ -41,9 +45,7 @@ class SignUp extends React.Component<SignUpProperties, SignUpState> {
                                        this.state.firstName as string, this.state.lastName as string)
             .then(item => {
                 localStorage.setItem('token', item.token);
-                this.setState({
-                    redirect: true
-                });
+                this.props.history.push('/');
             })
             .catch((error) => {
                 console.error(error);
@@ -57,14 +59,6 @@ class SignUp extends React.Component<SignUpProperties, SignUpState> {
     }
 
     render() {
-        if (this.state.redirect) {
-            return (<Redirect to="/"/>);
-        }
-
-        if (authenticationService.isAuthenticated()) {
-            return (<Redirect to={'/'}/>);
-        }
-
         return (
             <div>
                 <NavigationBar/>
@@ -93,14 +87,14 @@ class SignUp extends React.Component<SignUpProperties, SignUpState> {
                             label="email"/>
                         <br/>
                         <TextField
-                            name="name"
-                            placeholder="firstName"
+                            name="firstName"
+                            placeholder="name"
                             onChange={this.onChange}
                             label="firstName"/>
                         <br/>
                         <TextField
-                            name="surname"
-                            placeholder="lastName"
+                            name="lastName"
+                            placeholder="surname"
                             onChange={this.onChange}
                             label="lastName"/>
                         <br/>
@@ -115,4 +109,4 @@ class SignUp extends React.Component<SignUpProperties, SignUpState> {
     }
 }
 
-export default SignUp;
+export default withRouter(SignUp);

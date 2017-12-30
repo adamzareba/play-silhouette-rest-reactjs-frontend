@@ -1,28 +1,30 @@
 import * as React from 'react';
 import './Login.css';
-import { Redirect } from 'react-router';
 import { authenticationService } from '../../services/authenticationService';
 import NavigationBar from '../NavigationBar/NavigationBar';
 import { TextField } from 'material-ui';
 import Button from 'material-ui/Button';
 import Grid from 'material-ui/Grid';
+import { RouteComponentProps, withRouter } from 'react-router';
 
 interface LoginState {
     username?: string;
     password?: string;
-    redirect?: boolean;
 }
 
-class Login extends React.Component<{}, LoginState> {
+class Login extends React.Component<RouteComponentProps<{}>, LoginState> {
 
-    constructor(props: {}) {
+    constructor(props: RouteComponentProps<{}>) {
         super(props);
         this.state = {
             username: undefined,
-            password: undefined,
-            redirect: false
+            password: undefined
         };
         this.login = this.login.bind(this);
+
+        if (authenticationService.isAuthenticated()) {
+            this.props.history.push('/');
+        }
     }
 
     login() {
@@ -30,10 +32,7 @@ class Login extends React.Component<{}, LoginState> {
             authenticationService.login(this.state.username as string, this.state.password as string)
                 .then(item => {
                     localStorage.setItem('token', item.token);
-                    this.setState({
-                        redirect: true
-                    });
-                    this.context.push({pathname: '/'});
+                    this.props.history.push('/');
                 })
                 .catch((error) => {
                     console.error(error);
@@ -48,10 +47,6 @@ class Login extends React.Component<{}, LoginState> {
     }
 
     render() {
-        if (this.state.redirect || authenticationService.isAuthenticated()) {
-            return (<Redirect to={'/'}/>);
-        }
-
         return (
             <div>
                 <NavigationBar/>
@@ -83,4 +78,4 @@ class Login extends React.Component<{}, LoginState> {
     }
 }
 
-export default Login;
+export default withRouter(Login);
