@@ -113,7 +113,7 @@ class Login extends React.Component<RouteComponentProps<{}>, LoginState> {
                             value={this.state.password}
                         />
                         <FormHelperText id="password-error-text">{this.state.passwordError}</FormHelperText>
-                        <br/>
+                        <br/><br/>
 
                         <Button raised color="primary" onClick={this.login}>
                             Submit

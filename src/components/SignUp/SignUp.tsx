@@ -200,7 +200,7 @@ class SignUp extends React.Component<SignUpProperties, SignUpState> {
                             value={this.state.lastName}
                         />
                         <FormHelperText id="lastName-error-text">{this.state.lastNameError}</FormHelperText>
-                        <br/>
+                        <br/><br/>
 
                         <Button raised color="primary" onClick={this.register}>
                             Submit
