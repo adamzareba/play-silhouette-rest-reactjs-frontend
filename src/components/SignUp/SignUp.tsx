@@ -100,7 +100,7 @@ class SignUp extends React.Component<SignUpProperties, SignUpState> {
             );
         }
 
-        if(!this.state.email || !/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(this.state.email)) {
+        if (!this.state.email || !/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(this.state.email)) {
             this.setState({
                     emailError: 'E-mail address is incorrect'
                 }
@@ -142,7 +142,7 @@ class SignUp extends React.Component<SignUpProperties, SignUpState> {
             <div>
                 <NavigationBar/>
 
-                <Grid container alignItems="center" justify="center">
+                <Grid container={true} alignItems="center" justify="center">
                     <div>
                         <h1>Sign Up Page</h1>
 
@@ -202,7 +202,7 @@ class SignUp extends React.Component<SignUpProperties, SignUpState> {
                         <FormHelperText id="lastName-error-text">{this.state.lastNameError}</FormHelperText>
                         <br/><br/>
 
-                        <Button raised color="primary" onClick={this.register}>
+                        <Button raised={true} color="primary" onClick={this.register}>
                             Submit
                         </Button>
                     </div>

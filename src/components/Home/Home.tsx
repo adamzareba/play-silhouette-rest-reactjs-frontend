@@ -4,8 +4,8 @@ import { exampleDataService } from '../../services/exampleDataService';
 import ColorMessage from '../ColorMessage/ColorMessage';
 import BadPassword from '../BadPassword/BadPassword';
 import NavigationBar from '../NavigationBar/NavigationBar';
-import {authenticationService} from '../../services/authenticationService';
-import {Grid} from 'material-ui';
+import { authenticationService } from '../../services/authenticationService';
+import { Grid } from 'material-ui';
 
 interface WelcomeState {
     welcomeTitle: string;
@@ -46,8 +46,8 @@ class Welcome extends React.Component<{}, WelcomeState> {
             <div>
                 <NavigationBar/>
 
-                <Grid container alignItems="center" justify="center" spacing={24}>
-                    <Grid item xs={12}>
+                <Grid container={true} alignItems="center" justify="center" spacing={24}>
+                    <Grid item={true} xs={12}>
                         <div>
                             <BadPassword value={this.state.badPassword}/>
                         </div>
@@ -59,7 +59,7 @@ class Welcome extends React.Component<{}, WelcomeState> {
                         </div>
                     </Grid>
                     {!authenticationService.isAuthenticated() &&
-                    <Grid item xs={12}>
+                    <Grid item={true} xs={12}>
                         <p>To see restricted content, please login or create account.</p>
                     </Grid>
                     }

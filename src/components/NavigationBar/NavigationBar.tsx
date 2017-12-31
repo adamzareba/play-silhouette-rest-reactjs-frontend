@@ -12,7 +12,7 @@ import { Link } from 'react-router-dom';
 interface NavigationBarState {
     isAuthenticated: boolean;
     open: boolean;
-    anchorEl: any;
+    anchorEl?: HTMLElement;
 }
 
 class NavigationBar extends React.Component<{}, NavigationBarState> {
@@ -22,13 +22,13 @@ class NavigationBar extends React.Component<{}, NavigationBarState> {
         this.state = {
             isAuthenticated: authenticationService.isAuthenticated(),
             open: false,
-            anchorEl: null
+            anchorEl: undefined
         };
 
         this.logout = this.logout.bind(this);
     }
 
-    handleClick = (event: any) => {
+    handleClick = (event: React.MouseEvent<HTMLElement>) => {
         this.setState({open: true, anchorEl: event.currentTarget});
     }
 

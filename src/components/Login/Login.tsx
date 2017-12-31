@@ -85,7 +85,7 @@ class Login extends React.Component<RouteComponentProps<{}>, LoginState> {
         return (
             <div>
                 <NavigationBar/>
-                <Grid container alignItems="center" justify="center">
+                <Grid container={true} alignItems="center" justify="center">
                     <div>
                         <h1>Login Page</h1>
 
@@ -115,7 +115,7 @@ class Login extends React.Component<RouteComponentProps<{}>, LoginState> {
                         <FormHelperText id="password-error-text">{this.state.passwordError}</FormHelperText>
                         <br/><br/>
 
-                        <Button raised color="primary" onClick={this.login}>
+                        <Button raised={true} color="primary" onClick={this.login}>
                             Submit
                         </Button>
                     </div>
