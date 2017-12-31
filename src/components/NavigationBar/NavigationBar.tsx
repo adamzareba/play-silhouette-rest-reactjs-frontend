@@ -58,7 +58,7 @@ class NavigationBar extends React.Component<{}, NavigationBarState> {
                     </Menu>
 
                     <Typography type="title" color="inherit">
-                        Silhouette
+                        Silhouette FrontEnd App
                     </Typography>
                     {!this.state.isAuthenticated &&
                     <Button color="contrast" href={'/login'}>Login</Button>
