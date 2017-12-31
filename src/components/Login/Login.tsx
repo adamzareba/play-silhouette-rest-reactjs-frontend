@@ -1,11 +1,11 @@
 import * as React from 'react';
 import './Login.css';
-import {authenticationService} from '../../services/authenticationService';
+import { authenticationService } from '../../services/authenticationService';
 import NavigationBar from '../NavigationBar/NavigationBar';
-import {FormHelperText, TextField} from 'material-ui';
+import { FormHelperText, TextField } from 'material-ui';
 import Button from 'material-ui/Button';
 import Grid from 'material-ui/Grid';
-import {RouteComponentProps, withRouter} from 'react-router';
+import { RouteComponentProps, withRouter } from 'react-router';
 
 interface LoginState {
     username?: string;
@@ -92,13 +92,13 @@ class Login extends React.Component<RouteComponentProps<{}>, LoginState> {
                         <FormHelperText error={this.state.credentialsError !== undefined}>
                             {this.state.credentialsError}
                         </FormHelperText>
+                        <br />
                         <TextField
                             error={this.state.usernameError !== undefined}
                             aria-describedby="username-error-text"
                             name="username"
-                            placeholder="username"
                             onChange={this.onChange}
-                            label="username"
+                            label="Username"
                             value={this.state.username}
                         />
                         <FormHelperText id="username-error-text">{this.state.usernameError}</FormHelperText>
@@ -108,9 +108,8 @@ class Login extends React.Component<RouteComponentProps<{}>, LoginState> {
                             aria-describedby="password-error-text"
                             name="password"
                             type="password"
-                            placeholder="password"
                             onChange={this.onChange}
-                            label="password"
+                            label="Password"
                             value={this.state.password}
                         />
                         <FormHelperText id="password-error-text">{this.state.passwordError}</FormHelperText>
